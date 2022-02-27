@@ -1,5 +1,13 @@
+<script setup>
+import PokemonCard from './components/PokemonCard.vue'
+</script>
+
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello World!
-  </h1>
+  <div class="flex flex-wrap items-center justify-center">
+    <PokemonCard />
+    <PokemonCard />
+    <PokemonCard />
+    <PokemonCard />
+    <PokemonCard />
+  </div>
 </template>

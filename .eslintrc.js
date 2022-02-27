@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     node: true,
+    'vue/setup-compiler-macros': true,
   },
   extends: [
     'eslint:recommended',
@@ -8,5 +9,6 @@ module.exports = {
   ],
   rules: {
     'semi': [2, 'never'],
-  }
+    'comma-dangle': ['error', 'always-multiline'],
+  },
 }
