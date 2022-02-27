@@ -1,4 +1,6 @@
 <script setup>
+import TheButton from './common/TheButton.vue'
+
 defineProps({
   name: {
     type: String,
@@ -24,16 +26,28 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex p-6 max-w-fit h-52 m-4 rounded-xl shadow-xl items-center space-x-4">
+  <div class="flex flex-col align-middle lg:flex-row border-2 w-96 max-h-max p-6 mx-8 my-2 rounded-xl hover:shadow-xl items-center space-x-4">
     <img
       :src="image"
       class="w-2/3 h-2/3"
     >
     <div>
-      <h2>{{ name }}</h2>
+      <h2 class="text-xl">
+        {{ name }}
+      </h2>
       <div class="mt-2">
         <p>Height: <span>{{ height }}</span></p>
         <p>Weight: <span>{{ weight }}</span></p>
+      </div>
+      <div class="mt-2 flex flex-wrap">
+        <TheButton
+          text="Add to favorites"
+          type="favorite"
+        />
+        <TheButton
+          text="Remove"
+          type="delete"
+        />
       </div>
     </div>
   </div>
