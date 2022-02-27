@@ -3,5 +3,7 @@ import PokemonCard from './components/PokemonCard.vue'
 </script>
 
 <template>
-  <PokemonCard />
+  <div class="flex flex-wrap">
+    <PokemonCard />
+  </div>
 </template>

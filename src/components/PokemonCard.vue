@@ -24,7 +24,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex p-6 max-w-fit h-52 m-4 bg-slate-100 rounded-xl shadow-lg items-center space-x-4">
+  <div class="flex p-6 max-w-fit h-52 m-4 rounded-xl shadow-xl items-center space-x-4">
     <img
       :src="image"
       class="w-2/3 h-2/3"
