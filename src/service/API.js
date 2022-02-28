@@ -11,6 +11,10 @@ export async function getPokemonList(count = 15) {
     console.error(`Error: ${initialResponse.status}`)
   }
 
+  return mapPokemonInformation(listOfUrls)
+}
+
+async function mapPokemonInformation(listOfUrls) {
   const pokemonsList = []
 
   for (const pokemon of listOfUrls) {
