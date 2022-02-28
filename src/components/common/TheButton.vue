@@ -13,6 +13,11 @@ const props = defineProps({
     default: 'favorite',
     validator: (value) => ['favorite', 'delete'].includes(value),
   },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 const typeMapping = new Map()
@@ -28,6 +33,7 @@ const typeClasses = computed(() => {
   <button
     class="rounded-lg text-sm px-5 py-2.5 m-2 text-center"
     :class="typeClasses"
+    :disabled="disabled"
   >
     {{ text }}
   </button>
