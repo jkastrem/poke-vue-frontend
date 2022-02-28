@@ -22,6 +22,7 @@ async function mapPokemonInformation(listOfUrls) {
     if (response.ok) {
       const information = await response.json()
       pokemonsList.push({
+        id: information.id,
         name: capitalizeFirstLetter(information.name),
         height: information.height,
         weight: information.weight,

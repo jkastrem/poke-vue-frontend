@@ -1,5 +1,9 @@
 <script setup>
+import { pokemonsStore as usePokemonsStore } from '../store/pokemons'
+
 import TheButton from './common/TheButton.vue'
+
+const pokemonsStore = usePokemonsStore()
 
 defineProps({
   name: {
@@ -23,6 +27,10 @@ defineProps({
     default: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/No_image_available_500_x_500.svg',
   },
 })
+
+function addPokemonToFavorite(id) {
+  pokemonsStore.addPokemonToFavoriteList(id)
+}
 </script>
 
 <template>
@@ -43,6 +51,7 @@ defineProps({
         <TheButton
           text="Add to favorites"
           type="favorite"
+          @click="addPokemonToFavorite($attrs.id)"
         />
         <TheButton
           text="Remove"

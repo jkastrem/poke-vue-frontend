@@ -9,8 +9,8 @@ pokemonsStore.refreshPokemonList()
 <template>
   <div class="flex flex-wrap items-center justify-center">
     <PokemonCard 
-      v-for="(pokemon, index) in pokemonsStore.pokemonsList"
-      :key="index"
+      v-for="pokemon in pokemonsStore.pokemonsList"
+      :key="pokemon.id"
       v-bind="pokemon"
     />
   </div>
