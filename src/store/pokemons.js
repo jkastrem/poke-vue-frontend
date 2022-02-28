@@ -9,6 +9,15 @@ export const pokemonsStore = defineStore('pokemons', {
       favoritePokemons: [],
     }
   },
+  getters: {
+    favoriteListIds() {
+      const ids = []
+      for (const pokemon of this.favoritePokemons) {
+        ids.push(pokemon.id)
+      }
+      return Array.from(new Set(ids))
+    },
+  },
   actions: {
     async refreshPokemonList() {
       this.pokemonsList = await getPokemonList()

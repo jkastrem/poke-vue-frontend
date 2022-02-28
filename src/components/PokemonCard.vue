@@ -1,9 +1,12 @@
 <script setup>
+import { computed, useAttrs } from 'vue'
 import { pokemonsStore as usePokemonsStore } from '../store/pokemons'
 
 import TheButton from './common/TheButton.vue'
 
 const pokemonsStore = usePokemonsStore()
+
+const attrs = useAttrs()
 
 defineProps({
   name: {
@@ -31,6 +34,10 @@ defineProps({
 function addPokemonToFavorite(id) {
   pokemonsStore.addPokemonToFavoriteList(id)
 }
+
+const pokemonIsFavorite = computed(() => {
+  return pokemonsStore.favoriteListIds.includes(attrs.id)
+})
 </script>
 
 <template>
@@ -51,6 +58,7 @@ function addPokemonToFavorite(id) {
         <TheButton
           text="Add to favorites"
           type="favorite"
+          :disabled="pokemonIsFavorite"
           @click="addPokemonToFavorite($attrs.id)"
         />
         <TheButton
