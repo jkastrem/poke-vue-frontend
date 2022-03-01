@@ -29,6 +29,11 @@ defineProps({
     required: false,
     default: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/No_image_available_500_x_500.svg',
   },
+  favorite: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 function addPokemonToFavorite(id) {
@@ -56,13 +61,14 @@ const pokemonIsFavorite = computed(() => {
       </div>
       <div class="mt-2 flex flex-wrap">
         <TheButton
+          v-if="!favorite"
           text="Add to favorites"
           type="favorite"
           :disabled="pokemonIsFavorite"
           @click="addPokemonToFavorite($attrs.id)"
         />
         <TheButton
-          text="Remove"
+          :text="favorite ? 'Remove from favorite' : 'Remove'"
           type="delete"
         />
       </div>

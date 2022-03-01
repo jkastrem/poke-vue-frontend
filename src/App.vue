@@ -53,6 +53,7 @@ const buttonText = computed(() => {
       v-for="pokemon in pokemonList"
       :key="pokemon.id"
       v-bind="pokemon"
+      :favorite="localState.currentList === availableList.favoriteList"
     />
   </div>
 </template>
