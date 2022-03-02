@@ -2,6 +2,7 @@
 import { computed, onBeforeMount, reactive } from 'vue'
 import { pokemonsStore as usePokemonsStore } from './store/pokemons'
 import { availableList, buttonSwitcherListText } from './maps'
+import { listNaming } from './helpers/consts'
 
 import TheButton from './components/common/TheButton.vue'
 import PokemonCard from './components/PokemonCard.vue'
@@ -38,6 +39,15 @@ const switcherFunction = computed(() => {
 const buttonText = computed(() => {
   return buttonSwitcherListText[localState.currentList]
 })
+
+function removePokemon(id) {
+  pokemonsStore.removePokemon(
+    id,
+    localState.currentList === availableList.simpleList
+      ? listNaming.simple 
+      : listNaming.favorite,
+  )
+}
 </script>
 
 <template>
@@ -54,6 +64,7 @@ const buttonText = computed(() => {
       :key="pokemon.id"
       v-bind="pokemon"
       :favorite="localState.currentList === availableList.favoriteList"
+      @remove-pokemon="removePokemon"
     />
   </div>
 </template>

@@ -1,18 +1,20 @@
 import { defineStore } from 'pinia'
+import { removeObjectFromArrayByKey } from '../helpers/object'
+import { listNaming } from '../helpers/consts'
 
 import { getPokemonList } from '../service/API'
 
 export const pokemonsStore = defineStore('pokemons', {
   state: () => {
     return {
-      pokemonsList: [],
-      favoritePokemons: [],
+      [listNaming.simple]: [],
+      [listNaming.favorite]: [],
     }
   },
   getters: {
     favoriteListIds() {
       const ids = []
-      for (const pokemon of this.favoritePokemons) {
+      for (const pokemon of this[listNaming.favorite]) {
         ids.push(pokemon.id)
       }
       return Array.from(new Set(ids))
@@ -25,6 +27,9 @@ export const pokemonsStore = defineStore('pokemons', {
     addPokemonToFavoriteList(id) {
       const [ favoritePokemon ] = this.pokemonsList.filter((pokemon) => pokemon.id === id)
       this.favoritePokemons.push(favoritePokemon)
+    },
+    removePokemon(id, list) {
+      this[list] = removeObjectFromArrayByKey(id, 'id' ,this[list])
     },
   },
 })

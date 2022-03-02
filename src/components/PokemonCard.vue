@@ -36,6 +36,8 @@ defineProps({
   },
 })
 
+defineEmits(['remove-pokemon'])
+
 function addPokemonToFavorite(id) {
   pokemonsStore.addPokemonToFavoriteList(id)
 }
@@ -70,6 +72,7 @@ const pokemonIsFavorite = computed(() => {
         <TheButton
           :text="favorite ? 'Remove from favorite' : 'Remove'"
           type="delete"
+          @click="$emit('remove-pokemon', $attrs.id)"
         />
       </div>
     </div>
