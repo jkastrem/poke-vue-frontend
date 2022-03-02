@@ -14,5 +14,12 @@ I use `pnpm` for install dependencies. You can(maybe) use `yarn` or `npm`.
 
 3. Run dev-version: `pnpm run dev`
 
+## Test
+
+For run test run command: `pnpm run test`.
+
+**Vitest requires Vite >=v2.7.10 and Node >=v14**.
+
+## Other
 
 If you notice an error, please create issue :)
