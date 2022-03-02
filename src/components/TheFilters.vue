@@ -22,12 +22,14 @@ function updateFilters() {
     v-model="localState.fromHeight"
     label="From"
     id="from"
+    type="number"
     @input="updateFilters"
   />
   <FormInput
     v-model="localState.toHeight"
     label="To"
     id="to"
+    type="number"
     @input="updateFilters"
   />
 </template>
