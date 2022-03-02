@@ -6,6 +6,8 @@ import { listNaming } from './helpers/consts'
 
 import TheButton from './components/common/TheButton.vue'
 import PokemonCard from './components/PokemonCard.vue'
+import TheSort from './components/TheSort.vue'
+import TheFilters from './components/TheFilters.vue'
 
 const pokemonsStore = usePokemonsStore()
 
@@ -48,6 +50,10 @@ function removePokemon(id) {
       : listNaming.favorite,
   )
 }
+
+function filterPokemons(from, to) {
+  pokemonsStore.filterPokemon(from, to)
+}
 </script>
 
 <template>
@@ -56,6 +62,18 @@ function removePokemon(id) {
       :text="buttonText"
       class="mt-4"
       @click="switcherFunction"
+    />
+  </div>
+  <div
+    v-show="localState.currentList === availableList.simpleList"
+    class="flex flex-wrap justify-center"
+  >
+    <TheSort
+      @sort-by-height:up="pokemonsStore.sortPokemons('up')"
+      @sort-by-height:down="pokemonsStore.sortPokemons('down')"
+    />
+    <TheFilters
+      @update-filters="filterPokemons($event.fromHeight, $event.toHeight)"
     />
   </div>
   <div class="flex flex-wrap items-center justify-center">
