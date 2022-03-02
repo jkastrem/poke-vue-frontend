@@ -1,5 +1,12 @@
 <script setup>
+import { computed, useAttrs } from 'vue'
+import { pokemonsStore as usePokemonsStore } from '../store/pokemons'
+
 import TheButton from './common/TheButton.vue'
+
+const pokemonsStore = usePokemonsStore()
+
+const attrs = useAttrs()
 
 defineProps({
   name: {
@@ -22,6 +29,21 @@ defineProps({
     required: false,
     default: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/No_image_available_500_x_500.svg',
   },
+  favorite: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+})
+
+defineEmits(['remove-pokemon'])
+
+function addPokemonToFavorite(id) {
+  pokemonsStore.addPokemonToFavoriteList(id)
+}
+
+const pokemonIsFavorite = computed(() => {
+  return pokemonsStore.favoriteListIds.includes(attrs.id)
 })
 </script>
 
@@ -41,12 +63,16 @@ defineProps({
       </div>
       <div class="mt-2 flex flex-wrap">
         <TheButton
+          v-if="!favorite"
           text="Add to favorites"
           type="favorite"
+          :disabled="pokemonIsFavorite"
+          @click="addPokemonToFavorite($attrs.id)"
         />
         <TheButton
-          text="Remove"
+          :text="favorite ? 'Remove from favorite' : 'Remove'"
           type="delete"
+          @click="$emit('remove-pokemon', $attrs.id)"
         />
       </div>
     </div>
