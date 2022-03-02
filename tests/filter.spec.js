@@ -12,7 +12,6 @@ test('it should be return array from 5 to 10 including', () => {
     [
       { id: 2, field: 5 },
       { id: 3, field: 7 },
-      { id: 1, field: 15 },
     ],
   )
 })
