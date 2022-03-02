@@ -63,7 +63,10 @@ function removePokemon(id) {
     v-if="localState.currentList === availableList.simpleList"
     class="flex flex-wrap justify-center"
   >
-    <TheSort />
+    <TheSort
+      @sort-by-height:up="pokemonsStore.sortPokemons('up')"
+      @sort-by-height:down="pokemonsStore.sortPokemons('down')"
+    />
   </div>
   <div class="flex flex-wrap items-center justify-center">
     <PokemonCard 

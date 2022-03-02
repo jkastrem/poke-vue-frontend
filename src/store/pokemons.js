@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { removeObjectFromArrayByKey } from '../helpers/object'
 import { listNaming } from '../helpers/consts'
+import { sortArrayByField } from '../helpers/array'
 
 import { getPokemonList } from '../service/API'
 
@@ -30,6 +31,13 @@ export const pokemonsStore = defineStore('pokemons', {
     },
     removePokemon(id, list) {
       this[list] = removeObjectFromArrayByKey(id, 'id' ,this[list])
+    },
+    sortPokemons(direction) {
+      this[listNaming.simple] = sortArrayByField(
+        this[listNaming.simple],
+        'height',
+        direction,
+      )
     },
   },
 })
