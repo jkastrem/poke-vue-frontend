@@ -6,6 +6,7 @@ import { listNaming } from './helpers/consts'
 
 import TheButton from './components/common/TheButton.vue'
 import PokemonCard from './components/PokemonCard.vue'
+import TheSort from './components/TheSort.vue'
 
 const pokemonsStore = usePokemonsStore()
 
@@ -57,6 +58,12 @@ function removePokemon(id) {
       class="mt-4"
       @click="switcherFunction"
     />
+  </div>
+  <div
+    v-if="localState.currentList === availableList.simpleList"
+    class="flex flex-wrap justify-center"
+  >
+    <TheSort />
   </div>
   <div class="flex flex-wrap items-center justify-center">
     <PokemonCard 
