@@ -7,6 +7,7 @@ import { listNaming } from './helpers/consts'
 import TheButton from './components/common/TheButton.vue'
 import PokemonCard from './components/PokemonCard.vue'
 import TheSort from './components/TheSort.vue'
+import TheFilters from './components/TheFilters.vue'
 
 const pokemonsStore = usePokemonsStore()
 
@@ -67,6 +68,7 @@ function removePokemon(id) {
       @sort-by-height:up="pokemonsStore.sortPokemons('up')"
       @sort-by-height:down="pokemonsStore.sortPokemons('down')"
     />
+    <TheFilters />
   </div>
   <div class="flex flex-wrap items-center justify-center">
     <PokemonCard 
