@@ -11,3 +11,10 @@ export function sortArrayByField(array, field, direction = 'up') {
 
   return array.sort(compare)
 }
+
+export function filterArrayByField(array, field, from, to) {
+  return array.filter((item) => {
+    return from === '' ? true : item[field] >= from &&
+           to === '' ? true : item[field] <= to
+  })
+}

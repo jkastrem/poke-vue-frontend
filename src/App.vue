@@ -50,6 +50,10 @@ function removePokemon(id) {
       : listNaming.favorite,
   )
 }
+
+function filterPokemons(from, to) {
+  pokemonsStore.filterPokemon(from, to)
+}
 </script>
 
 <template>
@@ -61,14 +65,16 @@ function removePokemon(id) {
     />
   </div>
   <div
-    v-if="localState.currentList === availableList.simpleList"
+    v-show="localState.currentList === availableList.simpleList"
     class="flex flex-wrap justify-center"
   >
     <TheSort
       @sort-by-height:up="pokemonsStore.sortPokemons('up')"
       @sort-by-height:down="pokemonsStore.sortPokemons('down')"
     />
-    <TheFilters />
+    <TheFilters
+      @update-filters="filterPokemons($event.fromHeight, $event.toHeight)"
+    />
   </div>
   <div class="flex flex-wrap items-center justify-center">
     <PokemonCard 
